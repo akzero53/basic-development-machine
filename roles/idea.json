@@ -3,7 +3,7 @@
   "description":"Install IntelliJ IDEA",
   "default_attributes":{
     "idea":{
-      "setup_dir":"/home/vagrant",
+      "setup_dir":"/usr/local",
       "user":"vagrant",
       "version":"2016.2.4"
     }
