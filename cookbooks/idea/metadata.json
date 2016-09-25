@@ -1,0 +1,51 @@
+{
+  "name": "idea",
+  "description": "Installs and configures IntelliJ IDEA",
+  "long_description": "Please refer to README.md",
+  "maintainer": "Vincent Theron",
+  "maintainer_email": "vptheron@gmail.com",
+  "license": "Apache 2.0",
+  "platforms": {
+
+  },
+  "dependencies": {
+    "java": ">= 0.0.0"
+  },
+  "recommendations": {
+
+  },
+  "suggestions": {
+
+  },
+  "conflicting": {
+
+  },
+  "providing": {
+
+  },
+  "replacing": {
+
+  },
+  "attributes": {
+
+  },
+  "groupings": {
+
+  },
+  "recipes": {
+    "idea": "Downloads, installs and configures IntelliJ IDEA."
+  },
+  "version": "0.5.0",
+  "source_url": "",
+  "issues_url": "",
+  "privacy": false,
+  "chef_versions": [
+
+  ],
+  "ohai_versions": [
+
+  ],
+  "gems": [
+
+  ]
+}

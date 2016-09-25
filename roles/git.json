@@ -1,0 +1,7 @@
+{
+  "name":"git",
+  "description":"Install git",
+  "run_list":[
+    "git::default"
+  ]
+}

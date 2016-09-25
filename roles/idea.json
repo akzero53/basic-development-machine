@@ -1,0 +1,14 @@
+{
+  "name":"idea",
+  "description":"Install IntelliJ IDEA",
+  "default_attributes":{
+    "idea":{
+      "setup_dir":"/home/vagrant",
+      "user":"vagrant",
+      "version":"2016.2.4"
+    }
+  },
+  "run_list":[
+    "recipe[idea::default]"
+  ]
+}
