@@ -1,0 +1,16 @@
+{
+  "name":"golang",
+  "description":"Install golang",
+  "default_attributes": {
+    "go": {
+      "version":"1.7",
+      "platform":"amd64",
+      "owner":"vagrant",
+      "group":"vagrant",
+      "os":"linux"
+    }
+  },
+  "run_list": [
+    "recipe[golang]"
+  ]
+}

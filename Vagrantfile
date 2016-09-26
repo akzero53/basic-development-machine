@@ -11,6 +11,7 @@ Vagrant.configure(2) do |config|
     chef.add_role("java")
     chef.add_role("idea")
     chef.add_role("git")
+    chef.add_role("golang")
   end
 
   config.vm.provider "virtualbox" do |vb|
