@@ -2,6 +2,14 @@
 
 This file is used to list changes made in each version of the build-essential cookbook.
 
+## 7.0.1 (2016-10-06)
+- Install gcc 4.8 on SUSE < 12
+
+## 7.0.0 (2016-09-30)
+- Remove support for OS X < 10.9 and add support for OS X 10.12
+- Refactor the xcode installer resource as a custom resource that does not require updates for each new OS X update
+- Use a test recipe with apt_update to avoid needing apt
+
 ## 6.0.6 (2016-09-19)
 - Remove chef 11 compatibility in the metadata
 - Solaris 11 needs both make and gnu make
