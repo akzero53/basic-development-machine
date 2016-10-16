@@ -7,6 +7,7 @@ development machine, contains Java8, IntelliJ IDEA, Git.
 - java: 8
 - idea: 2016.2.4
 - git: 2.7.4
+- apache: 2.4.18
 
 ## host environment requirement(recommended)
 
