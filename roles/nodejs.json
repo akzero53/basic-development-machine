@@ -1,0 +1,17 @@
+{
+  "name":"nodejs",
+  "description":"Install Node.js",
+  "default_attributes":{
+    "nodejs":{
+      "engine":"node",
+      "install_method":"binary",
+      "version":"6.9.1",
+      "binary":{
+        "checksum":"a9d9e6308931fa2a2b0cada070516d45b76d752430c31c9198933c78f8d54b17"
+      }
+    }
+  },
+  "run_list":[
+    "nodejs"
+  ]
+}

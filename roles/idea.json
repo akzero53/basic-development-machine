@@ -5,7 +5,7 @@
     "idea":{
       "setup_dir":"/usr/local",
       "user":"vagrant",
-      "version":"2016.2.4"
+      "version":"2016.2.5"
     }
   },
   "run_list":[

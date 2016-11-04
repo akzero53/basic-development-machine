@@ -9,7 +9,8 @@
 
   },
   "dependencies": {
-    "java": ">= 0.0.0"
+    "java": ">= 0.0.0",
+    "ark": ">= 0.0.0"
   },
   "recommendations": {
 
@@ -33,11 +34,11 @@
 
   },
   "recipes": {
-    "idea": "Downloads, installs and configures IntelliJ IDEA."
+    "idea::default": "Downloads, installs and configures IntelliJ IDEA."
   },
-  "version": "0.5.0",
-  "source_url": "",
-  "issues_url": "",
+  "version": "0.6.0",
+  "source_url": "https://github.com/vptheron/chef-idea",
+  "issues_url": "https://github.com/vptheron/chef-idea/issues",
   "privacy": false,
   "chef_versions": [
 

@@ -1,8 +1,9 @@
 #
-# Cookbook Name:: idea-ultimate
+# Cookbook Name:: idea
 # Recipe:: default
 #
-# Copyright 2014, Vincent Theron
+# Copyright 2014-2016, Vincent Theron
+# Copyright 2016, Cask Data, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,50 +19,52 @@
 #
 
 include_recipe 'java'
+include_recipe 'ark'
 
-user = node['idea']['user']
-group = node['idea']['group'] || user
+idea_url = node['idea']['url']
+idea_version = node['idea']['version']
+setup_dir = node['idea']['setup_dir'] || '/opt'
 
-edition = node['idea']['edition']
-version = node['idea']['version']
+# Download, unpack, and install
+ark 'idea' do
+  url idea_url
+  version idea_version
+  extension 'tar.gz'
+  has_binaries ['idea.sh']
+  append_env_path true
+  prefix_root setup_dir
+  prefix_home setup_dir
+  owner node['idea']['user'] unless node['idea']['user'].nil?
+  group node['idea']['group'] unless node['idea']['group'].nil?
+  action :install
+end
 
-url = node['idea']['url']
+# vmoptions config
+template File.join(setup_dir, "idea-#{idea_version}/bin", 'idea64.vmoptions') do
+  source 'idea64.vmoptions.erb'
+  variables(
+    xms: node['idea']['64bits']['Xms'],
+    xmx: node['idea']['64bits']['Xmx']
+  )
+  owner node['idea']['user'] unless node['idea']['user'].nil?
+  group node['idea']['group'] unless node['idea']['group'].nil?
+  mode '0644'
+  action :create
+end
 
-setup_dir = node['idea']['setup_dir']
-ide_dir = node['idea']['ide_dir'] || "idea-I#{edition}-#{version}"
-
-install_path = File.join(setup_dir, ide_dir)
-archive_path = File.join("#{Chef::Config[:file_cache_path]}", "ideaI#{edition}-#{version}.tar.gz")
-
-if !::File.exists?("#{install_path}")
-
-  # Download IDEA archive
-  remote_file archive_path do 
-    source url
+full_edition =
+  if node['idea']['edition'] == 'U'
+    'Ultimate'
+  else
+    'Community'
   end
 
-  # Extract archive
-  execute 'extract archive' do
-    command "tar xf #{archive_path} -C #{Chef::Config[:file_cache_path]}/; mv #{Chef::Config[:file_cache_path]}/idea-I#{edition}-* #{install_path}; chown -R #{user}:#{group} #{install_path}"
-    action :run
-  end 
-
-  # vmoptions config
-  template File.join("#{install_path}", "bin", "idea64.vmoptions") do
-    source "idea64.vmoptions.erb"
-    variables(
-      :xms => node['idea']['64bits']['Xms'],
-      :xmx => node['idea']['64bits']['Xmx']
-    )
-    owner user
-    group group
-    mode 0644
-    action :create
-  end
-
-  # Delete archive
-  file "#{archive_path}" do
-    action :delete
-  end
-
+# .desktop entry
+template '/usr/share/applications/idea.desktop' do
+  source 'idea.desktop.erb'
+  variables(
+    setup_dir: setup_dir,
+    full_edition: full_edition
+  )
+  action :create
 end

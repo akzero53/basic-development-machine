@@ -1,17 +1,21 @@
 idea Cookbook
 =============
+
+[![Build Status](https://travis-ci.org/vptheron/chef-idea.svg?branch=master)](https://travis-ci.org/vptheron/chef-idea)
+
 This cookbook will install the community or ultimate edition of [IntelliJ IDEA](http://www.jetbrains.com/idea/).
 
 The **default** recipe will:
 
-* Download the Community Edition of the IDE from JetBrains' website
+* Download the Community or Ultimate Edition of the IDE from JetBrains' website
 * Extract the archive
 * Configure the JVM options used to start the IDE
+* Create a Freedesktop Desktop Specification entry
 
 Requirements
 ------------
 
-* Depends on **opscode/java** cookbook
+* Depends on **opscode/java** and **opscode/ark** cookbooks
 
 Attributes
 ----------
@@ -20,9 +24,8 @@ Attributes
 * `node['idea']['user']` - user owner of the installation.
 * `node['idea']['group']` - group owner of the installation (default to the same value as `user` if not specified).
 * `node['idea']['edition']` - Target edition of IntelliJ IDEA to install. Defaults to `C` for Community edition. Other acceptable value: `U` for Ultimate.
-* `node['idea']['version']` - the version of IntelliJ IDEA to install (default: `2016.2.3`).
+* `node['idea']['version']` - the version of IntelliJ IDEA to install (default: `2016.2.5`).
 * `node['idea']['url']` - Download URL for IntelliJ IDEA (default: `https://download-cf.jetbrains.com/idea/ideaI#{edition}-#{version}.tar.gz`).
-* `node['idea']['ide_dir']` - the name of the IDEA folder (default: `ideaI{edition}-{version}`, e.g. if you install the default version of the Community Edition: `ideaIC-14.1.4`).
 * `node['idea']['64bits']['Xmx']` - specify the value of `-Xmx` in the 64bits configuration file (default: `2048m`).
 * `node['idea']['64bits']['Xms']` - specify the value of `-Xms` in the 64bits configuration file (default: `2048m`).
 
